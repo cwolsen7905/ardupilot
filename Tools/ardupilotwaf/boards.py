@@ -488,3 +488,13 @@ class px4_v4(px4):
         self.version = '4'
         self.use_px4io = False
         self.romfs_exclude(['oreoled.bin', 'px4io.bin'])
+
+class ubflyin(linux):
+    toolchain = 'arm-linux-gnueabihf'
+
+    def configure_env(self, cfg, env):
+        super(ubflyin, self).configure_env(cfg, env)
+
+        env.DEFINES.update(
+            CONFIG_HAL_BOARD_SUBTYPE = 'HAL_BOARD_SUBTYPE_LINUX_UBFLYIN',
+        )
